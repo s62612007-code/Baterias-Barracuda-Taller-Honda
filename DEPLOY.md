@@ -1,65 +1,40 @@
-# Despliegue — hondabateriacali.com
+# Despliegue — www.bateriascali.es (Piensa ns97)
 
-Sitio **100 % estático**: HTML, CSS, JS y catálogo JSON embebido. Sin Node.js en producción.
+**Servidor:** `217.160.80.231` · `ns97.piensasolutions.com`  
+**Dominio:** `www.bateriascali.es` / `bateriascali.es`  
+**FTP:** cuenta `bateriascali.es` → carpeta `/html/`
 
-## Estructura publicada
+## DNS (solo ns97)
 
-1. **Landing** — hero con logo Honda Baterías Cali  
-2. **Separador** — banda con logo Honda visible  
-3. **Catálogo estático** — 12 baterías por página, **inicia en DUNCAN**, luego MAC, VARTA, etc.  
-4. **Referencias** — NS40, NS60, 42, 4D, AGM…  
-5. **Contacto** — WhatsApp y sede  
+| Registro | Tipo | Valor |
+|----------|------|-------|
+| `@` | A | `217.160.80.231` |
+| `www` | A | `217.160.80.231` |
 
-## Build local
+Quitar cualquier registro A a `217.76.150.40`.
 
-```bash
-npm run build
-```
-
-Genera la carpeta `dist/` lista para subir.
-
-## Subir a hondabateriacali.com
-
-### Opción A — FTP / cPanel (File Manager)
-
-1. Ejecute `npm run build`
-2. Comprima `dist/` en `honda-baterias.zip` o suba archivo por archivo
-3. En el hosting, vacíe la raíz pública (`public_html/` o `www/`)
-4. Suba **todo el contenido** de `dist/` (incluido `.htaccess`)
-5. Verifique: https://hondabateriacali.com/#marca-duncan
-
-### Opción B — rsync por SSH
+## Despliegue
 
 ```bash
-npm run build
-rsync -avz --delete dist/ usuario@servidor:/ruta/a/public_html/
+npm run deploy
 ```
 
-### Opción C — GitHub Actions (opcional)
+## `.env`
 
-Conecte el repo a su hosting con deploy automático en cada push a `main`.
-
-## URLs del catálogo
-
-| Marca   | URL directa              |
-|---------|--------------------------|
-| DUNCAN  | `/#marca-duncan`         |
-| MAC     | `/#marca-mac`            |
-| VARTA   | `/#marca-varta`          |
-| Pág. 2  | `/#marca-duncan-2`       |
-
-## Actualizar catálogo antes de desplegar
-
-```bash
-npm run sync:catalog   # importa oferta bateriacarro.com.co
-npm run build
-# subir dist/ al servidor
+```env
+BATERIASCALI_FTP_HOST=217.160.80.231
+BATERIASCALI_FTP_USER=bateriascali.es
+BATERIASCALI_FTP_PASS='contraseña'
+BATERIASCALI_SITE_URL=https://www.bateriascali.es
 ```
 
-## Comprobación post-despliegue
+## Si el servidor ns97 no responde
 
-- [ ] Logo Honda visible en header y separador del catálogo  
-- [ ] Catálogo abre en **DUNCAN** con 12 productos  
-- [ ] Paginación Anterior / Siguiente funciona  
-- [ ] Imágenes cargan desde bateriacarro.com.co  
-- [ ] WhatsApp 314 769 1248 responde  
+El hosting debe estar **activado en Piensa** para ns97:
+
+1. https://www.piensasolutions.com/clientes (login + 2FA)
+2. Servicios → `bateriascali.es` → migrar/activar en **ns97**
+3. Panel https://panel.bateriascali.es → certificado SSL
+4. Zona DNS → registros A a `217.160.80.231`
+
+Ver `scripts/dns-bateriascali-es.txt`

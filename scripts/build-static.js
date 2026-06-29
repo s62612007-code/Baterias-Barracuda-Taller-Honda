@@ -21,17 +21,8 @@ function copyRecursive(src, dest) {
 }
 
 function writeHtaccess() {
-  const htaccess = `# Honda Baterías Cali — sitio estático
+  const htaccess = `# Honda Baterías Cali — sitio estático (rutas por hash #)
 DirectoryIndex index.html
-
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
 
 <IfModule mod_expires.c>
   ExpiresActive On
@@ -46,9 +37,9 @@ DirectoryIndex index.html
   fs.writeFileSync(path.join(DIST, '.htaccess'), htaccess);
 }
 
-console.log('Construyendo sitio estático para hondabateriacali.com…');
+console.log('Construyendo sitio estático para www.bateriascali.es…');
 if (fs.existsSync(DIST)) fs.rmSync(DIST, { recursive: true });
 copyRecursive(SRC, DIST);
 writeHtaccess();
 console.log(`✓ dist/ listo (${fs.readdirSync(DIST).length} entradas en raíz)`);
-console.log('  Suba el contenido de dist/ a la raíz de hondabateriacali.com');
+console.log('  Suba el contenido de dist/ a www.bateriascali.es (FTP → html/)');

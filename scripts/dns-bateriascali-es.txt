@@ -1,0 +1,16 @@
+# DNS — bateriascali.es en Piensa ns97
+# Servidor: 217.160.80.231 (ns97.piensasolutions.com)
+# Panel dominio: https://panel.bateriascali.es
+# Área clientes: https://www.piensasolutions.com/clientes
+
+# Registros A (solo ns97):
+bateriascali.es           A       217.160.80.231
+www.bateriascali.es       A       217.160.80.231
+
+# Quitar registros al servidor antiguo:
+#   217.76.150.40  (slgn075 — no usar)
+
+# Tras activar hosting en ns97 y propagar DNS:
+#   npm run deploy
+#   npm run verify:deploy
+#   https://www.bateriascali.es/#marca-duncan

@@ -1,0 +1,19 @@
+# DNS — hondabateriascali.com → mismo hosting que hondabateriacali.com
+# Panel Piensa: https://panel.hondabateriacali.com
+# Área clientes: https://www.piensasolutions.com/clientes
+
+# ── Registros obligatorios ──
+hondabateriascali.com       A       217.76.150.40
+www.hondabateriascali.com   A       217.76.150.40
+
+# ── Opcional (panel / correo Piensa) ──
+control.hondabateriascali.com   CNAME   pdc.piensasolutions.com
+ftp.hondabateriascali.com       CNAME   www.hondabateriascali.com
+
+# ── En el hosting Piensa ──
+# 1. Dominios → Añadir dominio alias: hondabateriascali.com
+# 2. Carpeta web: html/ (misma que hondabateriacali.com)
+# 3. Activar certificado SSL cuando DNS propague
+
+# Verificar propagación:
+#   npm run verify:deploy
