@@ -250,8 +250,51 @@
 
 @media (min-width: 768px) {
   .ref-carousel__slide {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
   }
+}
+
+.ref-carousel__slide--single {
+  display: block;
+}
+
+.ref-carousel-panel {
+  border-color: #3d3500;
+  background: #141414;
+}
+
+.ref-carousel-panel__title,
+.ref-group__badge {
+  color: #ffcc00;
+}
+
+.ref-carousel-panel__desc {
+  color: #d4b800;
+}
+
+.ref-brand-card {
+  background: #1a1a1a;
+  border-color: #3d3500;
+}
+
+.ref-brand-card__name,
+.ref-brand-card__price {
+  color: #ffcc00;
+}
+
+.ref-carousel__arrow {
+  border-color: #ffcc00;
+  color: #ffcc00;
+  background: #000;
+}
+
+.ref-carousel__arrow:hover {
+  background: #ffcc00;
+  color: #000;
+}
+
+.ref-carousel__dot.is-active {
+  background: #ffcc00;
 }
 
 .ref-carousel__arrow {
@@ -322,9 +365,15 @@
 }
 
 .ref-carousel-panel__brands {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .ref-carousel-panel__brands {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .ref-carousel-panel .ref-brand-card {

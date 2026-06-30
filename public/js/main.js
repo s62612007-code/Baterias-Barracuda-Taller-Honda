@@ -3,6 +3,7 @@ import { formatPrice } from './utils/format.js';
 import { initCatalog } from './modules/catalog.js';
 import { initReferenceCatalog } from './modules/reference-catalog.js';
 import { initFitmentFinder } from './modules/fitment-finder.js';
+import { initOffersTicker } from './modules/offers-ticker.js';
 
 function renderAccessories() {
   const container = document.querySelector('#accessories-bar');
@@ -35,6 +36,7 @@ function initNavHighlight() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initOffersTicker();
   initCatalog();
   initReferenceCatalog();
   initFitmentFinder();

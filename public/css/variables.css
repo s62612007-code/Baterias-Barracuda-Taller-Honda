@@ -7,11 +7,12 @@
   --color-bosch: #004a7c;
   --color-rocket: #c2410c;
   --color-success: #166534;
-  --color-bg: #f5f5f5;
-  --color-surface: #ffffff;
-  --color-text: #000000;
-  --color-text-muted: #333333;
-  --color-border: #cccccc;
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-alt: #1c1c1c;
+  --color-text: #ffcc00;
+  --color-text-muted: #d4b800;
+  --color-border: #3d3500;
   --color-offer: #b91c1c;
   --color-on-primary: #000000;
   --color-on-dark: #ffffff;

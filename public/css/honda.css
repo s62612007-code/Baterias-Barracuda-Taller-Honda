@@ -1,8 +1,8 @@
-/* Honda Baterías Cali — identidad y catálogo */
+/* Honda Baterías Cali — tema negro y amarillo */
 
 .site-header--honda {
-  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-  border-bottom: 3px solid #cc0000;
+  background: #000;
+  border-bottom: 3px solid #ffcc00;
 }
 
 .site-header--honda .logo-img {
@@ -11,30 +11,20 @@
   display: block;
 }
 
-.site-header--honda .logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
+.nav-list a {
+  color: #ffcc00;
 }
 
-.site-header--honda .logo-text strong {
-  font-size: 1rem;
-  color: #cc0000;
-  letter-spacing: 0.04em;
-}
-
-.site-header--honda .logo-text span {
-  font-size: 0.75rem;
-  color: #666;
-  font-weight: 500;
+.nav-list a:hover {
+  color: #fff;
 }
 
 .catalog-divider {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #000 0%, #1a1a00 100%);
+  color: #ffcc00;
   padding: 2rem 0;
-  border-top: 4px solid #cc0000;
-  border-bottom: 4px solid #cc0000;
+  border-top: 4px solid #ffcc00;
+  border-bottom: 4px solid #ffcc00;
 }
 
 .catalog-divider__inner {
@@ -54,18 +44,14 @@
 .catalog-divider__logo {
   height: 64px;
   width: auto;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 2px 8px rgba(255, 204, 0, 0.3));
 }
 
 .catalog-divider__title {
   margin: 0 0 0.35rem;
   font-size: 1.5rem;
   font-weight: 800;
-}
-
-.catalog-divider__title em {
-  color: #ff4444;
-  font-style: normal;
+  color: #ffcc00;
 }
 
 .catalog-divider__desc {
@@ -73,6 +59,7 @@
   font-size: 0.9rem;
   opacity: 0.85;
   max-width: 36rem;
+  color: #fff;
 }
 
 .catalog-divider__hint {
@@ -88,10 +75,11 @@
 .catalog-divider__hint span {
   font-size: 0.8rem;
   opacity: 0.75;
+  color: #fff;
 }
 
 .section--catalog-static {
-  background: #f4f5f7;
+  background: #0a0a0a;
   padding-top: 2.5rem;
   padding-bottom: 3rem;
 }
@@ -104,191 +92,266 @@
   gap: 0.75rem;
   margin-bottom: 1rem;
   padding: 0.75rem 1rem;
-  background: #fff;
-  border: 1px solid var(--color-border);
+  background: #141414;
+  border: 1px solid #3d3500;
   border-radius: var(--radius-md);
-  border-left: 4px solid #cc0000;
+  border-left: 4px solid #ffcc00;
 }
 
 .catalog-page-info__range {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--color-text);
+  color: #ffcc00;
 }
 
 .catalog-page-info__range em {
-  color: #cc0000;
+  color: #fff;
   font-style: normal;
 }
 
 .catalog-page-info__steps {
   font-size: 0.8125rem;
-  color: var(--color-text-muted);
-}
-
-.brand-pagination {
-  align-items: center;
-}
-
-.brand-pagination__nav {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.brand-pagination__arrow {
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--color-border);
-  background: #fff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.15s;
+  color: #d4b800;
 }
 
 .brand-pagination__arrow:hover:not(:disabled) {
-  background: #cc0000;
-  color: #fff;
-  border-color: #cc0000;
-}
-
-.brand-pagination__arrow:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.brand-pagination__pages {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
+  background: #ffcc00;
+  color: #000;
+  border-color: #ffcc00;
 }
 
 .brand-carousel__pill--duncan.is-active {
-  background: #2d6a4f;
-  border-color: #2d6a4f;
+  background: #ffcc00;
+  border-color: #ffcc00;
+  color: #000;
+}
+
+.hero-badge--accent {
+  background: #ffcc00;
+  color: #000;
+}
+
+/* Ofertas superiores — rotación 1 → 2 → 3 */
+.offers-ticker-wrap {
+  background: #000;
+  border-bottom: 3px solid #ffcc00;
+  padding: 1rem 0;
+}
+
+.offers-ticker {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.offers-ticker__viewport {
+  overflow: hidden;
+}
+
+.offers-ticker__track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.offers-ticker__slide {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.75rem 1rem;
+  min-height: 4.5rem;
+}
+
+.offers-ticker__num {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  background: #ffcc00;
+  color: #000;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 1.25rem;
+}
+
+.offers-ticker__title {
+  margin: 0 0 0.25rem;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 800;
+  color: #ffcc00;
+}
+
+.offers-ticker__desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.offers-ticker__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.offers-ticker__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #ffcc00;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.offers-ticker__dot.is-active {
+  background: #ffcc00;
+  transform: scale(1.2);
+}
+
+.section--fitment {
+  background: #0a0a0a;
+}
+
+.section--fitment .section-title,
+.section--references .section-title {
+  color: #ffcc00;
+}
+
+.section--fitment .section-subtitle,
+.section--references .section-subtitle {
+  color: #d4b800;
+}
+
+.section--alt {
+  background: #111;
+}
+
+.fitment-meta {
+  font-size: 0.875rem;
+  color: #d4b800;
+  margin-bottom: 1rem;
+}
+
+.fitment-field select {
+  background: #141414;
+  color: #ffcc00;
+  border-color: #3d3500;
+}
+
+.catalog-search {
+  background: #141414;
+  color: #ffcc00;
+  border-color: #3d3500;
+}
+
+.catalog-count {
+  color: #d4b800;
+}
+
+.product-card {
+  background: #141414;
+  border-color: #3d3500;
+}
+
+.product-card__brand-line,
+.product-card__title {
+  color: #fff;
+}
+
+.product-card__price-current {
+  color: #ffcc00;
+}
+
+.product-card__image-wrap {
+  background: #1a1a1a;
+}
+
+.brand-block__header--clean .brand-block__title {
+  color: #ffcc00;
+}
+
+.brand-block__count {
+  color: #d4b800;
+}
+
+/* Plymouth Barracuda flotante */
+.barracuda-float {
+  position: relative;
+  height: min(42vw, 320px);
+  min-height: 200px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #111 0%, #000 40%, #0a0a0a 100%);
+}
+
+.barracuda-float__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 90%, rgba(255, 204, 0, 0.2) 0%, transparent 55%),
+    radial-gradient(circle at 30% 70%, rgba(255, 204, 0, 0.06), transparent 45%);
+  pointer-events: none;
+}
+
+.barracuda-float__car {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(900px, 95vw);
+  height: auto;
+  transform: translateX(-50%);
+  animation: barracuda-float 5s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 204, 0, 0.15));
+  z-index: 1;
+  object-fit: contain;
+}
+
+@keyframes barracuda-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-12px); }
+}
+
+.ref-carousel-panel__num {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  background: #ffcc00;
+  color: #000;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+.ref-carousel-panel__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.ref-carousel--battery .ref-carousel__dot {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid #ffcc00;
+  background: transparent;
+  color: #ffcc00;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.ref-carousel--battery .ref-carousel__dot.is-active {
+  background: #ffcc00;
+  color: #000;
 }
 
 @media (min-width: 768px) {
   .site-header--honda .logo-img {
     height: 56px;
   }
-}
-
-.hero-badge--accent {
-  background: #cc0000;
-  color: #fff;
-}
-
-/* Ofertas */
-.offers-strip {
-  background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-  padding: 1.75rem 0;
-  border-bottom: 3px solid #cc0000;
-}
-
-.offers-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .offers-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.offer-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1.25rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  color: #fff;
-  transition: transform 0.2s, border-color 0.2s;
-}
-
-.offer-card:hover {
-  transform: translateY(-2px);
-  border-color: #cc0000;
-}
-
-.offer-card--highlight {
-  background: rgba(204, 0, 0, 0.15);
-  border-color: #cc0000;
-}
-
-.offer-card__num {
-  flex-shrink: 0;
-  width: 2rem;
-  height: 2rem;
-  display: grid;
-  place-items: center;
-  background: #cc0000;
-  border-radius: 50%;
-  font-weight: 800;
-  font-size: 0.9rem;
-}
-
-.offer-card__title {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.offer-card__desc {
-  margin: 0;
-  font-size: 0.85rem;
-  opacity: 0.9;
-  line-height: 1.45;
-}
-
-.section--fitment {
-  background: #fff;
-}
-
-.fitment-meta {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  margin-bottom: 1rem;
-}
-
-/* Honda Civic flotante */
-.civic-float {
-  position: relative;
-  height: 220px;
-  overflow: hidden;
-  background: linear-gradient(180deg, #f4f5f7 0%, #1a1a1a 55%, #0d0d0d 100%);
-}
-
-.civic-float__bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 100%, rgba(204, 0, 0, 0.25) 0%, transparent 60%),
-    radial-gradient(circle at 20% 80%, rgba(255, 204, 0, 0.08), transparent 40%);
-  pointer-events: none;
-}
-
-.civic-float__car {
-  position: absolute;
-  left: 50%;
-  bottom: 1.5rem;
-  width: min(520px, 85vw);
-  height: auto;
-  transform: translateX(-50%);
-  animation: civic-float 4s ease-in-out infinite;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5));
-  z-index: 1;
-}
-
-@keyframes civic-float {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-14px); }
 }
 
 @media (max-width: 640px) {
@@ -298,11 +361,8 @@
   .catalog-divider__logo {
     height: 48px;
   }
-  .civic-float {
-    height: 160px;
-  }
-  .civic-float__car {
-    width: min(360px, 92vw);
-    bottom: 0.75rem;
+  .barracuda-float {
+    min-height: 160px;
+    height: 45vw;
   }
 }

@@ -254,7 +254,25 @@
 }
 
 .section--alt {
-  background: var(--color-surface);
+  background: var(--color-surface-alt, #111);
+}
+
+#contacto {
+  background: #0a0a0a;
+}
+
+#contacto .section-title {
+  color: #ffcc00;
+}
+
+.coverage-card {
+  background: #141414;
+  border: 1px solid #3d3500;
+  color: #fff;
+}
+
+.coverage-card h3 {
+  color: #ffcc00;
 }
 
 .products-grid {
