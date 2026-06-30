@@ -1,4 +1,4 @@
-/* Honda Baterías Cali — identidad y catálogo estático */
+/* Honda Baterías Cali — identidad y catálogo */
 
 .site-header--honda {
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
@@ -176,11 +176,133 @@
   }
 }
 
+.hero-badge--accent {
+  background: #cc0000;
+  color: #fff;
+}
+
+/* Ofertas */
+.offers-strip {
+  background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  padding: 1.75rem 0;
+  border-bottom: 3px solid #cc0000;
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .offers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.offer-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #fff;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.offer-card:hover {
+  transform: translateY(-2px);
+  border-color: #cc0000;
+}
+
+.offer-card--highlight {
+  background: rgba(204, 0, 0, 0.15);
+  border-color: #cc0000;
+}
+
+.offer-card__num {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  background: #cc0000;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.offer-card__title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.offer-card__desc {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  line-height: 1.45;
+}
+
+.section--fitment {
+  background: #fff;
+}
+
+.fitment-meta {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Honda Civic flotante */
+.civic-float {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f4f5f7 0%, #1a1a1a 55%, #0d0d0d 100%);
+}
+
+.civic-float__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(204, 0, 0, 0.25) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(255, 204, 0, 0.08), transparent 40%);
+  pointer-events: none;
+}
+
+.civic-float__car {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  width: min(520px, 85vw);
+  height: auto;
+  transform: translateX(-50%);
+  animation: civic-float 4s ease-in-out infinite;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5));
+  z-index: 1;
+}
+
+@keyframes civic-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-14px); }
+}
+
 @media (max-width: 640px) {
   .catalog-divider__hint {
     text-align: left;
   }
   .catalog-divider__logo {
     height: 48px;
+  }
+  .civic-float {
+    height: 160px;
+  }
+  .civic-float__car {
+    width: min(360px, 92vw);
+    bottom: 0.75rem;
   }
 }

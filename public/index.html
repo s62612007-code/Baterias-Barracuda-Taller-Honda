@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Honda Baterías Cali — Catálogo estático por marca. DUNCAN, MAC, VARTA, Bosch. 12 baterías por página. Oferta bateriacarro.com.co" />
+  <meta name="description" content="Honda Baterías Cali — Catálogo completo por marca y modelo de vehículo. DUNCAN, MAC, VARTA, Bosch. Cotización WhatsApp y domicilio en Cali." />
   <meta name="author" content="Ing. Santiago Martínez Vásquez" />
-  <title>Honda Baterías Cali — Catálogo por Marca</title>
+  <title>Honda Baterías Cali — Catálogo por Marca y Modelo</title>
   <link rel="icon" href="assets/images/honda-logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/main.css" />
 </head>
@@ -19,6 +19,8 @@
 
       <nav aria-label="Navegación principal">
         <ul class="nav-list">
+          <li><a href="#ofertas">Ofertas</a></li>
+          <li><a href="#buscador">Por modelo</a></li>
           <li><a href="#catalogo">Catálogo</a></li>
           <li><a href="#referencias">Referencias</a></li>
           <li><a href="#contacto">Cotizar</a></li>
@@ -33,22 +35,21 @@
 
   <main>
 
-    <!-- Página de inicio / landing -->
     <section class="hero-banner" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="hero-badges">
             <span class="hero-badge">Honda Baterías Cali</span>
-            <span class="hero-badge">Oferta bateriacarro.com.co</span>
+            <span class="hero-badge hero-badge--accent">609 referencias</span>
           </div>
           <h1 id="hero-title">Baterías para su Honda y todo vehículo en Cali</h1>
           <p>
-            Catálogo estático por marca — 12 productos por página, desde <strong>DUNCAN</strong> hasta cada fabricante.
+            Aplicativo completo por <strong>marca, modelo y año</strong>. Catálogo DUNCAN, MAC, VARTA, Bosch y más.
             Ing. Santiago Martínez Vásquez.
           </p>
           <div class="hero-cta-group">
             <a class="btn btn--whatsapp" href="https://wa.me/573147691248?text=Hola%2C%20quiero%20cotizar%20una%20batería." target="_blank" rel="noopener noreferrer">Cotizar por WhatsApp</a>
-            <a class="btn btn--outline" href="#catalogo">Ver catálogo DUNCAN</a>
+            <a class="btn btn--outline" href="#buscador">Buscar por modelo de auto</a>
           </div>
         </div>
         <div class="hero-showcase">
@@ -70,26 +71,92 @@
       </div>
     </section>
 
-    <!-- Separador con logo Honda → catálogo estático -->
+    <section id="ofertas" class="offers-strip" aria-labelledby="offers-title">
+      <div class="container">
+        <h2 class="visually-hidden" id="offers-title">Ofertas vigentes</h2>
+        <div class="offers-grid">
+          <article class="offer-card">
+            <span class="offer-card__num">1</span>
+            <div class="offer-card__body">
+              <h3 class="offer-card__title">Llame antes de 30 minutos</h3>
+              <p class="offer-card__desc"><strong>10% menos</strong> en el precio final de su batería</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card--highlight">
+            <span class="offer-card__num">2</span>
+            <div class="offer-card__body">
+              <h3 class="offer-card__title">Domicilio gratis</h3>
+              <p class="offer-card__desc">Entrega e instalación sin costo de envío en Cali</p>
+            </div>
+          </article>
+          <article class="offer-card">
+            <span class="offer-card__num">3</span>
+            <div class="offer-card__body">
+              <h3 class="offer-card__title">Renovación con soporte</h3>
+              <p class="offer-card__desc">Soporte o borne incluido por renovación — <strong>o 7% menos</strong></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="buscador" class="section section--fitment" aria-labelledby="fitment-title">
+      <div class="container">
+        <h2 class="section-title" id="fitment-title">Batería para su modelo de carro</h2>
+        <p class="section-subtitle">Seleccione marca, modelo y año — le mostramos las baterías compatibles del catálogo</p>
+        <p id="fitment-meta" class="fitment-meta"></p>
+        <form id="fitment-form" class="fitment-form">
+          <div class="fitment-form__row">
+            <label class="fitment-field">
+              <span>Marca del vehículo</span>
+              <select id="fitment-make" required>
+                <option value="">— Marca —</option>
+              </select>
+            </label>
+            <label class="fitment-field">
+              <span>Modelo</span>
+              <select id="fitment-model" disabled required>
+                <option value="">— Modelo —</option>
+              </select>
+            </label>
+            <label class="fitment-field">
+              <span>Año</span>
+              <select id="fitment-year" disabled required>
+                <option value="">— Año —</option>
+              </select>
+            </label>
+            <label class="fitment-field">
+              <span>Marca de batería</span>
+              <select id="fitment-battery-brand">
+                <option value="Todos">Todas las marcas</option>
+              </select>
+            </label>
+          </div>
+          <button type="submit" class="btn btn--primary">Buscar batería compatible</button>
+        </form>
+        <p id="fitment-summary" class="fitment-summary"></p>
+        <div id="fitment-results" class="fitment-results"></div>
+      </div>
+    </section>
+
     <div class="catalog-divider" id="catalogo-top">
       <div class="container catalog-divider__inner">
         <div class="catalog-divider__brand">
           <img class="catalog-divider__logo" src="assets/images/honda-logo.svg" alt="Honda Baterías" width="200" height="60" />
           <div>
-            <h2 class="catalog-divider__title">Catálogo estático · <em>12 en 12</em></h2>
+            <h2 class="catalog-divider__title">Catálogo por marca</h2>
             <p class="catalog-divider__desc">
-              Despliegue por marca. Inicia en <strong>DUNCAN</strong>, avance página a página y cambie de marca con las pestañas superiores.
+              Más de 600 referencias. Inicia en <strong>DUNCAN</strong> y explore cada fabricante con las pestañas superiores.
             </p>
           </div>
         </div>
         <div class="catalog-divider__hint">
           <strong>609 baterías</strong>
-          <span>Imágenes y precios · bateriacarro.com.co</span>
+          <span>Imágenes y precios actualizados</span>
         </div>
       </div>
     </div>
 
-    <!-- Catálogo estático (principal, justo después de la landing) -->
     <section id="catalogo" class="section section--catalog-static" aria-labelledby="catalog-title">
       <div class="container">
         <h2 class="section-title visually-hidden" id="catalog-title">Catálogo por marca</h2>
@@ -111,12 +178,11 @@
       </div>
     </section>
 
-    <section id="referencias" class="section section--alt" aria-labelledby="ref-title">
+    <section id="referencias" class="section section--alt section--references" aria-labelledby="ref-title">
       <div class="container">
         <h2 class="section-title" id="ref-title">Por referencia de caja</h2>
-        <p class="section-subtitle">NS40, NS60, 42, 4D, 8D, AGM, Start-Stop — <a href="https://bateriacarro.com.co" target="_blank" rel="noopener">bateriacarro.com.co</a></p>
+        <p class="section-subtitle">NS40, NS60, 42, 4D, 8D, AGM, Start-Stop — distintas marcas por tipo de caja</p>
         <p id="reference-count" class="catalog-count" aria-live="polite"></p>
-        <div id="reference-nav"></div>
         <div id="reference-catalog" class="reference-catalog"></div>
       </div>
     </section>
@@ -131,7 +197,7 @@
               <li>WhatsApp: 314 769 1248</li>
               <li>Correo: bateriventas@outlook.com</li>
               <li>Sede: Carrera 15 # 36-80, Cali</li>
-              <li>Domicilio: $20.000 · Descuento $40.000 por batería usada</li>
+              <li>Domicilio gratis · Descuento $40.000 por batería usada</li>
             </ul>
             <a class="btn btn--whatsapp" href="https://wa.me/573147691248?text=Hola%2C%20quiero%20cotizar%20una%20batería." target="_blank" rel="noopener noreferrer">Cotizar WhatsApp</a>
           </div>
@@ -146,6 +212,11 @@
       </div>
     </section>
 
+    <section class="civic-float" aria-hidden="true">
+      <div class="civic-float__bg"></div>
+      <img class="civic-float__car" src="assets/images/honda-civic.svg" alt="" width="640" height="220" loading="lazy" />
+    </section>
+
   </main>
 
   <footer class="site-footer">
@@ -158,7 +229,8 @@
         <div>
           <h3>Catálogo</h3>
           <ul>
-            <li><a href="#catalogo">Por marca (12 en 12)</a></li>
+            <li><a href="#buscador">Por modelo de auto</a></li>
+            <li><a href="#catalogo">Por marca</a></li>
             <li><a href="#marca-duncan">DUNCAN</a></li>
             <li><a href="#referencias">Por referencia</a></li>
           </ul>

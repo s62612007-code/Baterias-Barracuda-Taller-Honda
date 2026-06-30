@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-label="Honda Civic">
+  <defs>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="45%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#b0b0b0"/>
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a2535"/>
+      <stop offset="100%" stop-color="#0d1218"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#cc0000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <g filter="url(#glow)">
+    <!-- shadow -->
+    <ellipse cx="320" cy="195" rx="260" ry="18" fill="#000" opacity="0.25"/>
+    <!-- body -->
+    <path d="M80 145 Q85 110 130 95 L180 78 Q240 58 320 55 Q400 58 460 78 L510 95 Q555 110 560 145 L545 155 Q520 165 480 168 L160 168 Q120 165 95 155 Z" fill="url(#bodyGrad)" stroke="#888" stroke-width="2"/>
+    <!-- roof / glass -->
+    <path d="M175 95 Q240 68 320 65 Q400 68 465 95 L445 118 Q380 108 320 106 Q260 108 195 118 Z" fill="url(#glassGrad)"/>
+    <!-- red accent stripe -->
+    <path d="M95 155 L545 155" stroke="#cc0000" stroke-width="4" stroke-linecap="round"/>
+    <!-- wheels -->
+    <circle cx="175" cy="158" r="38" fill="#1a1a1a"/>
+    <circle cx="175" cy="158" r="22" fill="#444"/>
+    <circle cx="175" cy="158" r="8" fill="#cc0000"/>
+    <circle cx="465" cy="158" r="38" fill="#1a1a1a"/>
+    <circle cx="465" cy="158" r="22" fill="#444"/>
+    <circle cx="465" cy="158" r="8" fill="#cc0000"/>
+    <!-- headlight -->
+    <ellipse cx="548" cy="128" rx="18" ry="10" fill="#fff8e0" opacity="0.9"/>
+    <!-- honda badge hint -->
+    <rect x="300" y="128" width="40" height="14" rx="3" fill="#cc0000"/>
+  </g>
+</svg>

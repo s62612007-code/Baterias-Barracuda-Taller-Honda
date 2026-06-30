@@ -220,3 +220,125 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Carrusel de referencias — máx. 3 por vista */
+.ref-carousel {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ref-carousel__viewport {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.ref-carousel__track {
+  display: flex;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ref-carousel__slide {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .ref-carousel__slide {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.ref-carousel__arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.ref-carousel__arrow:hover {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.ref-carousel__dots {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.ref-carousel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-border);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.ref-carousel__dot.is-active {
+  background: #cc0000;
+  transform: scale(1.25);
+}
+
+.ref-carousel-panel {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: #fff;
+  padding: 1rem;
+  min-height: 100%;
+}
+
+.ref-carousel-panel__header {
+  margin-bottom: 0.75rem;
+}
+
+.ref-carousel-panel__title {
+  font-size: 1.1rem;
+  margin: 0.25rem 0;
+}
+
+.ref-carousel-panel__desc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ref-carousel-panel__brands {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ref-carousel-panel .ref-brand-card {
+  flex: 1;
+}
+
+.ref-carousel-panel .ref-brand-card__image-wrap {
+  min-height: 100px;
+}
+
+.ref-carousel-panel .ref-brand-card__image {
+  max-height: 90px;
+}
+
+.section--references {
+  overflow: hidden;
+}

@@ -1,21 +1,19 @@
-const CDN = 'https://bateriacarro.com.co';
+const PLACEHOLDER = 'assets/images/honda-logo.svg';
 
 export function resolveImage(src) {
-  if (!src) return `${CDN}/wp-content/uploads/2025/03/baterias_banner.png`;
+  if (!src) return PLACEHOLDER;
   if (src.startsWith('http')) return src;
   return src;
 }
 
 export function imageWithFallback(imgEl, src) {
-  const local = resolveImage(src);
-  imgEl.src = local;
-  if (src?.startsWith('http')) return;
+  imgEl.src = resolveImage(src);
   imgEl.addEventListener(
     'error',
     () => {
-      if (!imgEl.dataset.fallback && src) {
+      if (!imgEl.dataset.fallback) {
         imgEl.dataset.fallback = '1';
-        imgEl.src = `${CDN}/${src.replace(/^\/+/, '')}`;
+        imgEl.src = PLACEHOLDER;
       }
     },
     { once: true },

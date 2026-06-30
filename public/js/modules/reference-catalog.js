@@ -1,6 +1,10 @@
 import { PRODUCTS, REFERENCE_GROUPS, PRIORITY_BRANDS } from '../data/products.js';
 import { formatPrice, buildWhatsAppLink } from '../utils/format.js';
-import { resolveImage, imageWithFallback } from '../utils/images.js';
+import { imageWithFallback } from '../utils/images.js';
+
+const VISIBLE_GROUPS = 3;
+const AUTO_INTERVAL_MS = 5000;
+const BRANDS_PER_GROUP = 3;
 
 const BRAND_CLASS = {
   MAC: 'mac',
@@ -52,107 +56,124 @@ function createBrandCard(product, groupLabel) {
     </div>
   `;
 
-  const img = card.querySelector('.ref-brand-card__image');
-  imageWithFallback(img, product.image);
+  imageWithFallback(card.querySelector('.ref-brand-card__image'), product.image);
   return card;
 }
 
-function createGroupSection(group) {
+function createGroupPanel(group) {
   const products = groupProducts(group);
   if (products.length === 0) return null;
 
-  const featuredByBrand = PRIORITY_BRANDS.map((brand) => pickFeatured(products, brand)).filter(Boolean);
+  const featuredByBrand = PRIORITY_BRANDS.map((brand) => pickFeatured(products, brand))
+    .filter(Boolean)
+    .slice(0, BRANDS_PER_GROUP);
 
-  const section = document.createElement('section');
-  section.className = 'ref-group';
-  section.id = `ref-${group.id}`;
-  section.dataset.reference = group.label;
-
-  section.innerHTML = `
-    <header class="ref-group__header">
-      <div class="ref-group__heading">
-        <span class="ref-group__badge">${group.label}</span>
-        <h3 class="ref-group__title">Referencia ${group.label}</h3>
-        <p class="ref-group__desc">${group.description}</p>
-      </div>
-      <p class="ref-group__count">${products.length} productos · ${featuredByBrand.length} marcas</p>
+  const panel = document.createElement('article');
+  panel.className = 'ref-carousel-panel';
+  panel.dataset.reference = group.label;
+  panel.innerHTML = `
+    <header class="ref-carousel-panel__header">
+      <span class="ref-group__badge">${group.label}</span>
+      <h3 class="ref-carousel-panel__title">Referencia ${group.label}</h3>
+      <p class="ref-carousel-panel__desc">${group.description}</p>
     </header>
-    <div class="ref-group__grid" role="list"></div>
-    <details class="ref-group__all">
-      <summary>Ver las ${products.length} referencias ${group.label} en catálogo completo</summary>
-      <div class="ref-group__all-grid" role="list"></div>
-    </details>
+    <div class="ref-carousel-panel__brands" role="list"></div>
   `;
 
-  const grid = section.querySelector('.ref-group__grid');
+  const grid = panel.querySelector('.ref-carousel-panel__brands');
   featuredByBrand.forEach((product) => {
     grid.appendChild(createBrandCard(product, group.label));
   });
 
-  const allGrid = section.querySelector('.ref-group__all-grid');
-  products
-    .sort((a, b) => a.brand.localeCompare(b.brand, 'es') || a.price - b.price)
-    .forEach((product) => allGrid.appendChild(createMiniCard(product, group.label)));
-
-  return section;
+  return panel;
 }
 
-function createMiniCard(product, groupLabel) {
-  const brand = product.category || product.brand;
-  const card = document.createElement('article');
-  card.className = 'ref-mini-card';
-  card.innerHTML = `
-    <img class="ref-mini-card__img" alt="" loading="lazy" width="80" height="60" />
-    <div class="ref-mini-card__info">
-      <strong>${brand}</strong>
-      <span>${product.reference}</span>
-      <em>${formatPrice(product.price)}</em>
+function chunkGroups(groups, size) {
+  const chunks = [];
+  for (let i = 0; i < groups.length; i += size) {
+    chunks.push(groups.slice(i, i + size));
+  }
+  return chunks;
+}
+
+function initReferenceCarousel(container, activeGroups) {
+  const chunks = chunkGroups(activeGroups, VISIBLE_GROUPS);
+  if (chunks.length === 0) return;
+
+  let currentIndex = 0;
+  let timer = null;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'ref-carousel';
+  wrap.innerHTML = `
+    <button type="button" class="ref-carousel__arrow ref-carousel__arrow--prev" aria-label="Referencias anteriores">‹</button>
+    <div class="ref-carousel__viewport">
+      <div class="ref-carousel__track" aria-live="polite"></div>
     </div>
+    <button type="button" class="ref-carousel__arrow ref-carousel__arrow--next" aria-label="Referencias siguientes">›</button>
+    <div class="ref-carousel__dots" role="tablist" aria-label="Grupos de referencia"></div>
   `;
-  imageWithFallback(card.querySelector('.ref-mini-card__img'), product.image);
-  card.addEventListener('click', () => {
-    window.location.hash = `marca-${brand.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-    document.querySelector('#catalogo')?.scrollIntoView({ behavior: 'smooth' });
+
+  const track = wrap.querySelector('.ref-carousel__track');
+  const dots = wrap.querySelector('.ref-carousel__dots');
+
+  chunks.forEach((chunk, idx) => {
+    const slide = document.createElement('div');
+    slide.className = 'ref-carousel__slide';
+    slide.dataset.index = String(idx);
+    chunk.forEach((group) => {
+      const panel = createGroupPanel(group);
+      if (panel) slide.appendChild(panel);
+    });
+    track.appendChild(slide);
+
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'ref-carousel__dot';
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', `Grupo ${idx + 1} de ${chunks.length}`);
+    dot.addEventListener('click', () => goTo(idx, true));
+    dots.appendChild(dot);
   });
-  return card;
-}
 
-function createNavPills() {
-  const nav = document.createElement('nav');
-  nav.className = 'ref-nav';
-  nav.setAttribute('aria-label', 'Referencias de batería');
+  function goTo(index, pauseAuto = false) {
+    currentIndex = ((index % chunks.length) + chunks.length) % chunks.length;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.querySelectorAll('.ref-carousel__dot').forEach((d, i) => {
+      d.classList.toggle('is-active', i === currentIndex);
+      d.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+    });
+    if (pauseAuto) resetTimer();
+  }
 
-  REFERENCE_GROUPS.forEach((group) => {
-    const count = groupProducts(group).length;
-    if (count === 0) return;
-    const link = document.createElement('a');
-    link.href = `#ref-${group.id}`;
-    link.className = 'ref-nav__pill';
-    link.textContent = group.label;
-    link.title = `${count} productos`;
-    nav.appendChild(link);
+  function resetTimer() {
+    if (timer) clearInterval(timer);
+    if (chunks.length <= 1) return;
+    timer = setInterval(() => goTo(currentIndex + 1), AUTO_INTERVAL_MS);
+  }
+
+  wrap.querySelector('.ref-carousel__arrow--prev')?.addEventListener('click', () => {
+    goTo(currentIndex - 1, true);
+  });
+  wrap.querySelector('.ref-carousel__arrow--next')?.addEventListener('click', () => {
+    goTo(currentIndex + 1, true);
   });
 
-  return nav;
+  container.appendChild(wrap);
+  goTo(0);
+  resetTimer();
 }
 
 export function initReferenceCatalog() {
   const container = document.querySelector('#reference-catalog');
-  const navContainer = document.querySelector('#reference-nav');
   if (!container) return;
 
-  if (navContainer) {
-    navContainer.appendChild(createNavPills());
-  }
+  const activeGroups = REFERENCE_GROUPS.filter((g) => groupProducts(g).length > 0);
+  initReferenceCarousel(container, activeGroups);
 
-  REFERENCE_GROUPS.forEach((group) => {
-    const section = createGroupSection(group);
-    if (section) container.appendChild(section);
-  });
-
-  const total = REFERENCE_GROUPS.reduce((sum, g) => sum + groupProducts(g).length, 0);
+  const total = activeGroups.reduce((sum, g) => sum + groupProducts(g).length, 0);
   const counter = document.querySelector('#reference-count');
   if (counter) {
-    counter.textContent = `${REFERENCE_GROUPS.length} referencias · ${total} productos del catálogo bateriacarro.com.co`;
+    counter.textContent = `${activeGroups.length} referencias · ${total} productos · ${BRANDS_PER_GROUP} marcas por referencia`;
   }
 }

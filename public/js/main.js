@@ -2,6 +2,7 @@ import { ACCESSORIES } from './data/products.js';
 import { formatPrice } from './utils/format.js';
 import { initCatalog } from './modules/catalog.js';
 import { initReferenceCatalog } from './modules/reference-catalog.js';
+import { initFitmentFinder } from './modules/fitment-finder.js';
 
 function renderAccessories() {
   const container = document.querySelector('#accessories-bar');
@@ -36,6 +37,7 @@ function initNavHighlight() {
 document.addEventListener('DOMContentLoaded', () => {
   initCatalog();
   initReferenceCatalog();
+  initFitmentFinder();
   renderAccessories();
   initNavHighlight();
 });

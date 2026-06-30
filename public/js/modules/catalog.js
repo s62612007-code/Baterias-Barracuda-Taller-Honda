@@ -239,7 +239,7 @@ function createPageInfo(brand, currentPage, totalPages, totalProducts) {
       <em>${brand}</em> · Mostrando ${start}–${end} de ${totalProducts} baterías
     </p>
     <p class="catalog-page-info__steps">
-      Página ${currentPage} de ${totalPages} · ${PAGE_SIZE} productos por página · Elija otra marca arriba
+      Página ${currentPage} de ${totalPages} · Elija otra marca arriba
     </p>
   `;
   return info;
@@ -357,7 +357,7 @@ function updateCount(groups, activeBrand, query, visibleCount) {
     counter.textContent = `${activeBrand}: ${total} referencias · ${pages} página${pages === 1 ? '' : 's'} de ${PAGE_SIZE}`;
     return;
   }
-  counter.textContent = `${PRODUCTS.length} productos · 12 por página · inicia en DUNCAN`;
+  counter.textContent = `${PRODUCTS.length} productos · inicia en DUNCAN`;
 }
 
 export function initCatalog() {

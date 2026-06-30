@@ -1,6 +1,6 @@
 # Sistema de Gestión — Baterías Cali Saint
 
-Plataforma digital centralizada para la gestión, consulta y cotización del catálogo de **Baterías Cali Saint**, sincronizado con la oferta publicada en **[bateriacarro.com.co](https://bateriacarro.com.co)**.
+Plataforma digital centralizada para la gestión, consulta y cotización del catálogo de **Baterías Cali Saint**, publicada en **[www.bateriascali.es](https://www.bateriascali.es)**.
 
 ---
 
@@ -57,7 +57,7 @@ El ecosistema digital implementa un diseño de alta disponibilidad avalado por l
 | **Backend** | Node.js con Express |
 | **Base de Datos** | PostgreSQL (stock) · MongoDB (bitácoras técnicas) |
 | **Infraestructura** | Microservicios en AWS con contenedores Docker |
-| **Catálogo en vivo** | Sincronizado con [bateriacarro.com.co](https://bateriacarro.com.co) |
+| **Catálogo en vivo** | [www.bateriascali.es](https://www.bateriascali.es) |
 
 ---
 
@@ -87,7 +87,7 @@ PORT=3000
 DB_HOST=localhost
 DB_USER=saint_admin
 DB_PASS=saint_secure_password
-CATALOG_CDN=https://bateriacarro.com.co
+CATALOG_CDN=https://www.bateriascali.es
 WHATSAPP=573147691248
 ```
 
@@ -97,13 +97,13 @@ WHATSAPP=573147691248
 npm install
 ```
 
-### 4. Sincronizar catálogo e imágenes desde bateriacarro.com.co
+### 4. Sincronizar catálogo e imágenes
 
 ```bash
 npm run sync:catalog
 ```
 
-Este comando importa los **609 productos en oferta** con imágenes exactas desde [bateriacarro.com.co](https://bateriacarro.com.co).
+Este comando importa los **609 productos** con imágenes al catálogo local.
 
 ### 5. Ejecutar migraciones de la base de datos *(fase backend)*
 
@@ -127,7 +127,7 @@ La aplicación estará disponible en **http://localhost:3000**
 |---|---|
 | `npm run dev` | Servidor de desarrollo con recarga |
 | `npm start` | Servidor de producción |
-| `npm run sync:catalog` | Importa catálogo e imágenes de bateriacarro.com.co |
+| `npm run sync:catalog` | Importa catálogo e imágenes al proyecto |
 | `npm test` | Ejecuta pruebas locales |
 | `npm run db:migrate` | Migraciones PostgreSQL *(próxima fase)* |
 
@@ -150,7 +150,7 @@ Toda adición de código o integración de nuevos proveedores de baterías debe 
 | **WhatsApp** | [314 769 1248](https://wa.me/573147691248) |
 | **Correo** | bateriventas@outlook.com |
 | **Sede** | Carrera 15 # 36-80, Santiago de Cali |
-| **Sitio catálogo** | [bateriacarro.com.co](https://bateriacarro.com.co) |
+| **Sitio catálogo** | [www.bateriascali.es](https://www.bateriascali.es) |
 
 ---
 

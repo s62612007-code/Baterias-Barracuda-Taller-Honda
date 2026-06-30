@@ -6,7 +6,7 @@ export const BUSINESS = {
   email: 'bateriventas@outlook.com',
   address: 'Carrera 15 # 36-80, Santiago de Cali',
   whatsappUrl: 'https://wa.me/573147691248',
-  catalogUrl: 'https://bateriacarro.com.co',
+  catalogUrl: 'https://www.bateriascali.es',
   schedule: 'Atención 24/7',
 };
 
