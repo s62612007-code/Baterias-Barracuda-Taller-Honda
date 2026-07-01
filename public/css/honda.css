@@ -131,84 +131,80 @@
   color: #000;
 }
 
-/* Ofertas superiores — rotación 1 → 2 → 3 */
-.offers-ticker-wrap {
+/* Ofertas superiores — 1 · 2 · 3 siempre visibles, resaltado rotativo */
+.offers-strip {
   background: #000;
   border-bottom: 3px solid #ffcc00;
-  padding: 1rem 0;
+  padding: 1.25rem 0;
 }
 
-.offers-ticker {
-  max-width: 720px;
-  margin: 0 auto;
+.offers-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
 }
 
-.offers-ticker__viewport {
-  overflow: hidden;
+@media (min-width: 768px) {
+  .offers-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
 }
 
-.offers-ticker__track {
+.offer-card {
   display: flex;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 204, 0, 0.25);
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: border-color 0.35s, background 0.35s, transform 0.25s, box-shadow 0.35s;
 }
 
-.offers-ticker__slide {
-  flex: 0 0 100%;
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 0.75rem 1rem;
-  min-height: 4.5rem;
+.offer-card:hover {
+  border-color: rgba(255, 204, 0, 0.6);
 }
 
-.offers-ticker__num {
+.offer-card--active {
+  background: rgba(255, 204, 0, 0.12);
+  border-color: #ffcc00;
+  box-shadow: 0 0 24px rgba(255, 204, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.offer-card__num {
   flex-shrink: 0;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: grid;
   place-items: center;
   background: #ffcc00;
   color: #000;
   border-radius: 50%;
   font-weight: 900;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
-.offers-ticker__title {
-  margin: 0 0 0.25rem;
-  font-size: clamp(1rem, 3vw, 1.25rem);
+.offer-card__title {
+  margin: 0 0 0.3rem;
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
   font-weight: 800;
   color: #ffcc00;
 }
 
-.offers-ticker__desc {
+.offer-card__desc {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: #fff;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
-.offers-ticker__dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-
-.offers-ticker__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid #ffcc00;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.offers-ticker__dot.is-active {
-  background: #ffcc00;
-  transform: scale(1.2);
+.offer-card__desc strong {
+  color: #ffcc00;
+  font-weight: 800;
 }
 
 .section--fitment {
@@ -277,39 +273,42 @@
   color: #d4b800;
 }
 
-/* Plymouth Barracuda — escena en movimiento */
+/* Plymouth Barracuda — centrado, visible en totalidad */
 .barracuda-float {
   position: relative;
-  height: clamp(320px, 58vw, 560px);
-  min-height: 320px;
+  height: clamp(420px, 62vw, 680px);
+  min-height: 420px;
   overflow: hidden;
-  background: #050505;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .barracuda-float__sky {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 120% 80% at 50% 110%, rgba(255, 204, 0, 0.22) 0%, transparent 55%),
-    radial-gradient(circle at 70% 20%, rgba(255, 204, 0, 0.06), transparent 40%),
-    linear-gradient(180deg, #0a0a0a 0%, #111 45%, #1a1a00 100%);
+    radial-gradient(ellipse 90% 70% at 50% 85%, rgba(255, 204, 0, 0.18) 0%, transparent 60%),
+    radial-gradient(circle at 50% 30%, rgba(255, 204, 0, 0.05), transparent 50%),
+    linear-gradient(180deg, #000 0%, #0a0a0a 50%, #111 100%);
   pointer-events: none;
 }
 
 .barracuda-float__speed-lines {
   position: absolute;
-  inset: 15% 0 38% 0;
+  inset: 10% 0 28% 0;
   background: repeating-linear-gradient(
     90deg,
     transparent 0,
     transparent 48px,
-    rgba(255, 204, 0, 0.04) 48px,
-    rgba(255, 204, 0, 0.04) 52px,
+    rgba(255, 204, 0, 0.03) 48px,
+    rgba(255, 204, 0, 0.03) 52px,
     transparent 52px,
     transparent 120px
   );
-  animation: barracuda-speed-lines 1.1s linear infinite;
-  opacity: 0.7;
+  animation: barracuda-speed-lines 1.4s linear infinite;
+  opacity: 0.5;
   pointer-events: none;
   z-index: 1;
 }
@@ -319,8 +318,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 38%;
-  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 30%, #080808 100%);
+  height: 26%;
+  background: linear-gradient(180deg, #141414 0%, #080808 100%);
   border-top: 3px solid #ffcc00;
   overflow: hidden;
   z-index: 2;
@@ -328,64 +327,60 @@
 
 .barracuda-float__road-stripes {
   position: absolute;
-  inset: 42% -100% 0 -100%;
+  inset: 45% -100% 0 -100%;
   background: repeating-linear-gradient(
     90deg,
     transparent 0,
     transparent 70px,
-    rgba(255, 204, 0, 0.85) 70px,
-    rgba(255, 204, 0, 0.85) 110px,
+    rgba(255, 204, 0, 0.75) 70px,
+    rgba(255, 204, 0, 0.75) 110px,
     transparent 110px,
     transparent 180px
   );
-  animation: barracuda-road-scroll 0.65s linear infinite;
+  animation: barracuda-road-scroll 0.8s linear infinite;
 }
 
 .barracuda-float__road-glow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.08), transparent);
-  animation: barracuda-road-glow 2s ease-in-out infinite;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 204, 0, 0.1), transparent 70%);
 }
 
 .barracuda-float__car-wrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 14%;
+  position: relative;
   z-index: 4;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  padding: 0 1rem 0.5rem;
-  animation: barracuda-drive 6s ease-in-out infinite;
-  will-change: transform;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 22%;
+  animation: barracuda-float-center 5s ease-in-out infinite;
 }
 
 .barracuda-float__shadow {
   position: absolute;
-  bottom: 2%;
+  bottom: 18%;
   left: 50%;
-  width: min(520px, 72vw);
-  height: 28px;
+  width: min(480px, 70vw);
+  height: 32px;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.75) 0%, transparent 72%);
-  animation: barracuda-shadow 6s ease-in-out infinite;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.8) 0%, transparent 72%);
   pointer-events: none;
+  z-index: 3;
 }
 
 .barracuda-float__car {
   position: relative;
-  width: min(920px, 96vw);
-  max-height: clamp(180px, 38vw, 340px);
+  width: min(900px, 94vw);
   height: auto;
+  max-height: min(480px, 52vh);
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center center;
   filter:
-    drop-shadow(0 24px 48px rgba(0, 0, 0, 0.85))
-    drop-shadow(0 0 40px rgba(255, 204, 0, 0.18));
-  animation: barracuda-car-bounce 6s ease-in-out infinite, barracuda-motion-pulse 1.2s ease-in-out infinite;
-  will-change: transform, filter;
+    drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9))
+    drop-shadow(0 0 35px rgba(255, 204, 0, 0.15));
 }
 
 @keyframes barracuda-speed-lines {
@@ -399,42 +394,13 @@
 }
 
 @keyframes barracuda-road-glow {
-  0%, 100% { opacity: 0.4; transform: translateX(-5%); }
-  50% { opacity: 1; transform: translateX(5%); }
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
 
-@keyframes barracuda-drive {
-  0% { transform: translateX(-14%) translateY(0) rotate(-1.2deg); }
-  25% { transform: translateX(-4%) translateY(-8px) rotate(0.4deg); }
-  50% { transform: translateX(10%) translateY(0) rotate(1deg); }
-  75% { transform: translateX(-2%) translateY(-6px) rotate(-0.5deg); }
-  100% { transform: translateX(-14%) translateY(0) rotate(-1.2deg); }
-}
-
-@keyframes barracuda-car-bounce {
-  0%, 100% { transform: translateY(0) scale(1); }
-  35% { transform: translateY(-5px) scale(1.008); }
-  65% { transform: translateY(-3px) scale(1.004); }
-}
-
-@keyframes barracuda-motion-pulse {
-  0%, 100% {
-    filter:
-      drop-shadow(0 24px 48px rgba(0, 0, 0, 0.85))
-      drop-shadow(0 0 40px rgba(255, 204, 0, 0.18));
-  }
-  50% {
-    filter:
-      drop-shadow(0 28px 52px rgba(0, 0, 0, 0.9))
-      drop-shadow(-8px 0 18px rgba(255, 204, 0, 0.12))
-      drop-shadow(8px 0 18px rgba(255, 204, 0, 0.12))
-      drop-shadow(0 0 50px rgba(255, 204, 0, 0.28));
-  }
-}
-
-@keyframes barracuda-shadow {
-  0%, 100% { transform: translateX(-50%) scaleX(0.92); opacity: 0.65; }
-  50% { transform: translateX(-42%) scaleX(1.08); opacity: 0.85; }
+@keyframes barracuda-float-center {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 .ref-carousel-panel__num {
@@ -486,26 +452,27 @@
     height: 48px;
   }
   .barracuda-float {
-    min-height: 280px;
-    height: clamp(280px, 65vw, 400px);
+    min-height: 360px;
+    height: clamp(360px, 70vw, 520px);
   }
 
   .barracuda-float__car {
-    max-height: clamp(140px, 42vw, 220px);
+    max-height: min(320px, 45vh);
   }
 
   .barracuda-float__car-wrap {
-    bottom: 16%;
+    padding-bottom: 26%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .barracuda-float__car,
   .barracuda-float__car-wrap,
   .barracuda-float__road-stripes,
-  .barracuda-float__speed-lines,
-  .barracuda-float__road-glow,
-  .barracuda-float__shadow {
+  .barracuda-float__speed-lines {
     animation: none;
+  }
+
+  .offer-card--active {
+    transform: none;
   }
 }

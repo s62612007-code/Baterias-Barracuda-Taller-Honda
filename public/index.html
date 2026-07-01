@@ -33,10 +33,32 @@
     </div>
   </header>
 
-  <section id="ofertas" class="offers-ticker-wrap" aria-labelledby="offers-title">
+  <section id="ofertas" class="offers-strip" aria-labelledby="offers-title">
     <div class="container">
       <h2 class="visually-hidden" id="offers-title">Ofertas vigentes</h2>
-      <div id="offers-ticker" class="offers-ticker"></div>
+      <div id="offers-ticker" class="offers-grid">
+        <article class="offer-card offer-card--active" data-offer="1">
+          <span class="offer-card__num">1</span>
+          <div class="offer-card__body">
+            <h3 class="offer-card__title">Llame antes de 30 minutos</h3>
+            <p class="offer-card__desc"><strong>10% menos</strong> en el precio final de su batería</p>
+          </div>
+        </article>
+        <article class="offer-card" data-offer="2">
+          <span class="offer-card__num">2</span>
+          <div class="offer-card__body">
+            <h3 class="offer-card__title">Domicilio gratis</h3>
+            <p class="offer-card__desc">Entrega e instalación sin costo de envío en Cali</p>
+          </div>
+        </article>
+        <article class="offer-card" data-offer="3">
+          <span class="offer-card__num">3</span>
+          <div class="offer-card__body">
+            <h3 class="offer-card__title">Renovación con soporte</h3>
+            <p class="offer-card__desc">Soporte o borne incluido — <strong>o 7% menos</strong></p>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
